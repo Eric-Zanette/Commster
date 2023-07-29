@@ -107,3 +107,9 @@ nav .navContainer ul {
 .loginForm .loginButtons button {
   font-size: 16px;
 }
+
+.loginForm .invalidText {
+  color: red;
+  font-size: 16px;
+  margin-top: 0px;
+}

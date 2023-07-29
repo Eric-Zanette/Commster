@@ -3,6 +3,7 @@ const createUser =
 const getUsers = "SELECT * FROM users";
 const getUserById = "SELECT * FROM users WHERE ID = $1";
 const getUserByEmail = "SELECT * FROM users WHERE email = $1";
+const getUserByUsername = "SELECT * FROM users WHERE username = $1";
 const deleteUserById = "DELETE FROM users WHERE id = $1";
 
 module.exports = {
@@ -11,4 +12,5 @@ module.exports = {
   getUserById,
   getUserByEmail,
   deleteUserById,
+  getUserByUsername,
 };

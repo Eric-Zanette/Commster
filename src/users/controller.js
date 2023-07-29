@@ -26,7 +26,7 @@ const getUsers = (req, res) => {
 };
 
 /* Add a user */
-const addUser = (req, res) => {
+const addUser = async (req, res) => {
   const { username, email, password, password2 } = req.body;
 
   /* Input validation */
@@ -40,28 +40,25 @@ const addUser = (req, res) => {
     return res.status(400).json(errors);
   }
   /* Check if email is already registered */
-  pool.query(queries.getUserByEmail, [email], async (error, results) => {
-    if (results.rows.length > 0) {
-      if (error) throw error;
-      return res.status(400).json({ email: "Email already registered" });
-    }
+  checkEmail = await pool.query(queries.getUserByEmail, [email]);
+  if (checkEmail.rows.length > 0) {
+    errors.email = "Email already registered";
+  }
 
-    /* Hash Password */
+  /* Check if username is already taken */
+  checkEmail = await pool.query(queries.getUserByEmail, [email]);
+  if (checkEmail.rows.length > 0) {
+    errors.username = "Username taken";
+    return res.status(400).json(errors);
+  }
 
-    const salt = await bcrypt.genSalt(10);
-    console.log(password);
-    const hashedPass = await bcrypt.hash(password, salt);
-    console.log(hashedPass);
-    /* Create the user */
-    pool.query(
-      queries.createUser,
-      [username, email, hashedPass],
-      (error, results) => {
-        if (error) throw error;
-        return res.status(200).send("User Created Successfully!");
-      }
-    );
-  });
+  /* Hash Password */
+  const salt = await bcrypt.genSalt(10);
+  const hashedPass = await bcrypt.hash(password, salt);
+
+  /* Create the user */
+  await pool.query(queries.createUser, [username, email, hashedPass]);
+  return res.status(200);
 };
 
 /* deletes a user */
