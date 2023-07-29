@@ -3,9 +3,11 @@ const controller = require("./controller");
 
 const router = Router();
 
+router.post("/login", controller.login);
+
 router.get("/", controller.getUsers);
 
-router.get("/:id", controller.getUserById);
+router.get("/get/:id", controller.getUserById);
 
 router.post("/", controller.addUser);
 

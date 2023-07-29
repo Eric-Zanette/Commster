@@ -4,6 +4,8 @@ const userRoutes = require("./src/users/routes");
 const saleRoutes = require("./src/sales/routes");
 const cartRoutes = require("./src/cart_items/routes");
 
+require("dotenv").config();
+
 const app = express();
 const port = 5000;
 
