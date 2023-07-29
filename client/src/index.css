@@ -1,0 +1,109 @@
+/* Set-up */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(178, 224, 227, 0.887);
+  color: black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* Navbar */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav {
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(83, 111, 111);
+  color: white;
+}
+
+nav .navContainer {
+  display: flex;
+  width: 1000px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+nav .navContainer .logoContainer {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+nav .navContainer ul {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+}
+
+/* Login */
+
+.container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login-Form */
+
+.loginForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.loginForm p {
+  margin-top: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.loginForm input {
+  margin-top: 5px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.loginForm .loginButtons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.loginForm .loginButtons button {
+  font-size: 16px;
+}
