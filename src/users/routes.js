@@ -9,6 +9,8 @@ router.get("/", controller.getUsers);
 
 router.get("/get/:id", controller.getUserById);
 
+router.post("/token", controller.getUserByToken);
+
 router.post("/", controller.addUser);
 
 router.delete("/:id", controller.deleteUser);

@@ -32,7 +32,7 @@ const RegisterForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await register_user({ ...formData });
-    res === true ? navigate("/sell") : setErrors({ ...res });
+    res === true ? navigate("/login") : setErrors({ ...res });
   };
 
   return (
@@ -100,7 +100,7 @@ const RegisterForm = () => {
 
         <div className="loginButtons">
           <button className="login">Register</button>
-          <Link to="/register">
+          <Link to="/login">
             <button className="login" type="button">
               Login
             </button>

@@ -29,7 +29,6 @@ const getUsers = (req, res) => {
 const addUser = async (req, res) => {
   const { username, email, password, password2 } = req.body;
 
-  /* Input validation */
   const { errors, isValid } = validation.register(
     username,
     email,
@@ -39,26 +38,23 @@ const addUser = async (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  /* Check if email is already registered */
+
   checkEmail = await pool.query(queries.getUserByEmail, [email]);
   if (checkEmail.rows.length > 0) {
     errors.email = "Email already registered";
   }
 
-  /* Check if username is already taken */
   checkEmail = await pool.query(queries.getUserByEmail, [email]);
   if (checkEmail.rows.length > 0) {
     errors.username = "Username taken";
     return res.status(400).json(errors);
   }
 
-  /* Hash Password */
   const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(password, salt);
 
-  /* Create the user */
   await pool.query(queries.createUser, [username, email, hashedPass]);
-  return res.status(200);
+  return res.status(200).json({ msg: "User Created!" });
 };
 
 /* deletes a user */
@@ -77,6 +73,7 @@ const deleteUser = (req, res) => {
   });
 };
 
+/* Gets Token (login) */
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -98,7 +95,6 @@ const login = async (req, res) => {
   const hashedPass = user.rows[0].password;
 
   const comp = await bcrypt.compare(password, hashedPass);
-  console.log(comp);
 
   if (!comp) {
     return res.status(400).json({ password: "wrong password" });
@@ -111,10 +107,18 @@ const login = async (req, res) => {
   return res.status(200).json({ token: token });
 };
 
+const getUserByToken = async (req, res) => {
+  const token = req.body.token;
+  console.log(req.body);
+  const decoded = jwt.decode(token);
+  res.status(200).json({ username: decoded.username });
+};
+
 module.exports = {
   getUsers,
   getUserById,
   addUser,
   deleteUser,
   login,
+  getUserByToken,
 };
