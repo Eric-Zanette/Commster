@@ -109,7 +109,6 @@ const login = async (req, res) => {
 
 const getUserByToken = async (req, res) => {
   const token = req.body.token;
-  console.log(req.body);
   const decoded = jwt.decode(token);
   res.status(200).json({ username: decoded.username });
 };

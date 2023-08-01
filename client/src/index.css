@@ -1,9 +1,11 @@
 /* Set-up */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Slab:wght@100;300;400;700;900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto Slab", serif;
 }
 
 body {
@@ -74,6 +76,12 @@ nav .navContainer ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+.container h1 {
+  font-size: 30px;
+  font-weight: 400;
 }
 
 /* Login-Form */
@@ -87,7 +95,8 @@ nav .navContainer ul {
 
 .loginForm p {
   margin-top: 20px;
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: 300;
   text-align: center;
 }
 
@@ -95,7 +104,8 @@ nav .navContainer ul {
   margin-top: 5px;
   height: 30px;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: none;
 }
 
 .loginForm .loginButtons {
@@ -106,10 +116,73 @@ nav .navContainer ul {
 
 .loginForm .loginButtons button {
   font-size: 16px;
+  font-weight: 600;
 }
 
 .loginForm .invalidText {
   color: red;
   font-size: 16px;
   margin-top: 0px;
+}
+
+/* Sell items */
+.saleForm .saleFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 475px;
+  margin-bottom: 40px;
+}
+
+.saleForm .description {
+  margin-top: 10px;
+  width: 400px;
+  height: 100px;
+  background-color: aliceblue;
+  border: none;
+}
+
+.saleForm button {
+  margin-top: 60px;
+  font-size: 30px;
+  background-color: rgb(7, 32, 55);
+  padding: 10px 40px;
+  border-radius: 5px;
+  color: white;
+}
+
+.saleForm .saleFlex .saleImageContainer {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.saleForm .saleFlex .saleImageContainer .imageInput {
+  width: 200px;
+}
+
+.saleForm .saleFlex .saleImageContainer .salePreview {
+  height: 200px;
+  width: 200px;
+  background-color: aliceblue;
+}
+
+.saleForm .saleFlex .saleImageContainer .imagePlaceholder {
+  height: 200px;
+  width: 200px;
+  background-color: aliceblue;
+}
+
+.saleForm .saleFlex .saleDataContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saleForm .saleFlex .saleDataContainer Input {
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+  background-color: aliceblue;
 }

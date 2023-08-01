@@ -70,8 +70,15 @@ export const UsersProvider = ({ children }) => {
     data.username ? setUser(data.username) : setUser(null);
   };
 
+  const logout = () => {
+    localStorage.clear();
+    setUser(null);
+  };
+
   return (
-    <UsersContext.Provider value={{ user, register_user, login_user, setUser }}>
+    <UsersContext.Provider
+      value={{ user, register_user, login_user, setUser, logout }}
+    >
       {children}
     </UsersContext.Provider>
   );
