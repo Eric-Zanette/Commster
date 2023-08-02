@@ -1,13 +1,16 @@
 const isEmpty = require("./../isEmpty");
 const Validator = require("validator");
 
-const register = (product, price, description, img_url) => {
+const list = (product, price, description, img_url, quantity) => {
   errors = {};
 
   product = isEmpty(product) ? "" : product;
   price = isEmpty(price) ? "" : price;
+  price = price == 0 ? "" : price;
   description = isEmpty(description) ? "" : description;
   img_url = isEmpty(img_url) ? "" : img_url;
+  quantity = isEmpty(quantity) ? "" : quantity;
+  quantity = quantity == 0 ? "" : quantity;
 
   if (!Validator.isLength(product.toString(), { min: 2, max: 15 })) {
     errors.product = "Product name must be between 2 and 15 characters";
@@ -29,6 +32,10 @@ const register = (product, price, description, img_url) => {
     errors.img_url = "Must attach an image";
   }
 
+  if (Validator.isEmpty(quantity)) {
+    errors.quantity = "Must enter a quantity";
+  }
+
   return {
     errors,
     isValid: Object.keys(errors).length > 0 ? false : true,
@@ -36,5 +43,5 @@ const register = (product, price, description, img_url) => {
 };
 
 module.exports = {
-  register,
+  list,
 };

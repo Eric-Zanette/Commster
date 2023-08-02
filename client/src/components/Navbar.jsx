@@ -15,7 +15,7 @@ const Navbar = () => {
         </Link>
         <ul className="navList">
           <li>
-            <Link to="/buy">Buy</Link>
+            <Link to="/market">Buy</Link>
           </li>
 
           <li>

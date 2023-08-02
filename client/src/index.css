@@ -125,6 +125,10 @@ nav .navContainer ul {
   margin-top: 0px;
 }
 
+.loginForm .invalid {
+  border: red 1px solid;
+}
+
 /* Sell items */
 .saleForm .saleFlex {
   display: flex;
@@ -134,12 +138,25 @@ nav .navContainer ul {
   margin-bottom: 40px;
 }
 
+.saleForm Input {
+  border: none;
+}
+
+.saleForm .invalid {
+  border: red 1px solid;
+}
+
 .saleForm .description {
   margin-top: 10px;
   width: 400px;
   height: 100px;
   background-color: aliceblue;
   border: none;
+  padding: 10px;
+}
+
+.saleForm .description.invalid {
+  border: red 1px solid;
 }
 
 .saleForm button {
@@ -182,7 +199,12 @@ nav .navContainer ul {
 
 .saleForm .saleFlex .saleDataContainer Input {
   text-align: center;
-  border: none;
   border-radius: 2px;
   background-color: aliceblue;
+}
+
+.saleForm .invalidText {
+  color: red;
+  font-size: 12px;
+  margin-top: 0px;
 }

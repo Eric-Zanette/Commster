@@ -25,23 +25,30 @@ const getSales = (req, res) => {
 
 /* Add a sale */
 const addSale = (req, res) => {
-  const { product, price, description, img_url, quantity } = req.body;
+  const { product, price, description, image_url, quantity } = req.body;
 
-  const { errors, isValid } = validation.register(
+  console.log(req.body);
+
+  const { errors, isValid } = validation.list(
     product,
     price,
     description,
-    img_url
+    image_url,
+    quantity
   );
   if (!isValid) {
     return res.status(400).json(errors);
   }
+
+  const url = "/saleImages/" + req.file.filename;
+
   pool.query(
     queries.createSale,
-    [product, price, description, img_url, quantity],
+    [product, price, description, url, quantity],
     (error, results) => {
       if (error) throw error;
-      return res.status(200).send("Sale Created Successfully!");
+      console.log("saled!");
+      return res.status(200);
     }
   );
 };

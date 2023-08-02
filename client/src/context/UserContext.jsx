@@ -46,9 +46,11 @@ export const UsersProvider = ({ children }) => {
       const token = data.token;
       console.log(token);
       localStorage.setItem("token", token);
+      get_user();
 
       return true;
     }
+
     return data;
   };
 
