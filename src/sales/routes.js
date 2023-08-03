@@ -5,7 +5,7 @@ const controller = require("./controller");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "saleImages");
+    cb(null, "public/saleImages");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);

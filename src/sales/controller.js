@@ -38,7 +38,7 @@ const addSale = (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const url = "/saleImages/" + req.file.filename;
+  const url = "http://localhost:5000/" + req.file.filename;
 
   pool.query(
     queries.createSale,

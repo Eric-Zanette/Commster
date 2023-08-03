@@ -2,7 +2,7 @@ import UsersContext from "../context/UserContext";
 import { useContext, useEffect, useState } from "react";
 
 const RecentSales = () => {
-  const [sales, setSales] = useState();
+  const [sales, setSales] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -13,12 +13,15 @@ const RecentSales = () => {
     setLoading(true);
     const recentSales = await fetch("/api/sales/recent", {
       method: "POST",
-      header: {
+      headers: {
         "Content-Type": "application-json",
       },
-      body: { num: num },
+      body: JSON.stringify({ num: num }),
     });
-    await setSales({ ...recentSales });
+
+    const recentJson = await recentSales.json();
+
+    await setSales(Object.values(recentJson));
     setLoading(false);
   };
 
@@ -33,7 +36,11 @@ const RecentSales = () => {
   return (
     <>
       <h2>Recent Sales</h2>
-      <div className="recentSalesContainer"></div>
+      <div className="recentSalesContainer">
+        {sales.map((sale) => {
+          return <img src={sale.img_url}></img>;
+        })}
+      </div>
     </>
   );
 };
