@@ -27,8 +27,6 @@ const getSales = (req, res) => {
 const addSale = (req, res) => {
   const { product, price, description, image_url, quantity } = req.body;
 
-  console.log(req.body);
-
   const { errors, isValid } = validation.list(
     product,
     price,
@@ -69,9 +67,18 @@ const deleteSale = (req, res) => {
   });
 };
 
+const getRecentSales = async (req, res) => {
+  const { num } = req.body;
+
+  const recentSales = await pool.query(queries.getRecentSales, [num]);
+
+  res.status(200).json(recentSales.rows);
+};
+
 module.exports = {
   getSales,
   getSaleById,
   addSale,
   deleteSale,
+  getRecentSales,
 };

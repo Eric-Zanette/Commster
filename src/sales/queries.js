@@ -5,9 +5,12 @@ const getSaleById = "SELECT * FROM sales WHERE ID = $1";
 
 const deleteSaleById = "DELETE FROM sales WHERE id = $1";
 
+const getRecentSales = "SELECT * FROM sales ORDER BY posted_on DESC LIMIT $1";
+
 module.exports = {
   createSale,
   getSales,
   getSaleById,
   deleteSaleById,
+  getRecentSales,
 };

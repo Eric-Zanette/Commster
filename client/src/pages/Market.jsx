@@ -1,3 +1,4 @@
+import RecentSales from "../components/RecentSales";
 import UsersContext from "../context/UserContext";
 import { useContext } from "react";
 
@@ -12,7 +13,12 @@ const Market = () => {
     );
   }
 
-  return <div>market</div>;
+  return (
+    <div className="container">
+      <h1>Commster Marketplace</h1>
+      <RecentSales />
+    </div>
+  );
 };
 
 export default Market;

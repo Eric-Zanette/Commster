@@ -19,5 +19,6 @@ app.use(cors());
 app.use("/api/users", userRoutes);
 app.use("/api/sales", saleRoutes);
 app.use("/api/carts", cartRoutes);
+app.use(express.static(__dirname + "/public"));
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
