@@ -15,8 +15,10 @@ const Market = () => {
 
   return (
     <div className="container">
-      <h1>Commster Marketplace</h1>
-      <RecentSales />
+      <div className="marketContainer">
+        <h1 className="marketHeader">Commster Marketplace</h1>
+        <RecentSales />
+      </div>
     </div>
   );
 };

@@ -11,7 +11,7 @@ export const UsersProvider = ({ children }) => {
 
   const register_user = async (formData) => {
     try {
-      const res = await fetch("api/users", {
+      const res = await fetch("/api/users", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -30,7 +30,7 @@ export const UsersProvider = ({ children }) => {
   };
 
   const login_user = async (formData) => {
-    const res = await fetch("api/users/login", {
+    const res = await fetch("/api/users/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -58,7 +58,7 @@ export const UsersProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     console.log(token);
 
-    const res = await fetch("api/users/token", {
+    const res = await fetch("/api/users/token", {
       method: "POST",
       headers: {
         Accept: "application/json",

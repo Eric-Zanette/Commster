@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import { UsersProvider } from "./context/UserContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Item from "./pages/Item";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/sell" element={<Post />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/item/:id" element={<Item />} />
           </Routes>
         </Router>
       </UsersProvider>

@@ -1,5 +1,6 @@
 const pool = require("../../db");
 const queries = require("./queries");
+const jwt = require("jsonwebtoken");
 
 /* Get cart items by user ID */
 const getCartItemsById = (req, res) => {
@@ -23,8 +24,13 @@ const getCartItems = (req, res) => {
 };
 
 /* Add a cart item */
-const addCartItem = (req, res) => {
-  const { buyer_id, sale_id, quantity } = req.body;
+const addCartItem = async (req, res) => {
+  console.log(req.body);
+  const sale_id = req.params.id;
+  const { token, quantity } = req.body;
+
+  buyer = jwt.decode(token);
+  buyer_id = buyer.id;
 
   pool.query(
     queries.createCartItem,

@@ -92,6 +92,7 @@ const login = async (req, res) => {
   }
 
   const username = user.rows[0].username;
+  const id = user.rows[0].id;
   const hashedPass = user.rows[0].password;
 
   const comp = await bcrypt.compare(password, hashedPass);
@@ -100,7 +101,7 @@ const login = async (req, res) => {
     return res.status(400).json({ password: "wrong password" });
   }
 
-  const token = await jwt.sign({ username }, process.env.SECRET_KEY, {
+  const token = await jwt.sign({ username, id }, process.env.SECRET_KEY, {
     algorithm: "HS256",
   });
 

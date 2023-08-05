@@ -208,3 +208,108 @@ nav .navContainer ul {
   font-size: 12px;
   margin-top: 0px;
 }
+
+/* Market */
+
+.marketContairner {
+  display: flex;
+  justify-content: center;
+}
+
+.marketContainer h1 {
+  margin-bottom: 40px;
+}
+
+.marketContainer h2 {
+  margin-bottom: 20px;
+}
+
+.recentSalesContainer {
+  width: 1000px;
+  height: 50%;
+  display: grid;
+  overflow-x: auto;
+  overflow-y: auto;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+
+.recentSalesContainer .saleItem {
+  display: flex;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.recentSalesContainer .saleItem p {
+  margin-left: 10px;
+}
+
+.recentSalesContainer .saleItem img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Item */
+
+.itemContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemContainer h1 {
+  font-size: 70px;
+  margin-bottom: 10px;
+}
+
+.itemContainer .itemImage {
+  height: 400px;
+  width: 600px;
+  object-fit: cover;
+}
+
+.itemContainer .itemFlex {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+}
+
+.itemContainer .itemDescription {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.itemContainer .itemForm .quantity {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemContainer .itemForm .itemFlex {
+  justify-content: space-around;
+}
+
+.itemContainer .itemForm .quantity .quantityInput {
+  width: 60px;
+  padding: 5px;
+}
+
+.itemContainer .itemForm button {
+  font-size: 30px;
+  background-color: rgb(2, 2, 73);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
