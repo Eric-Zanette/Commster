@@ -64,9 +64,10 @@ const deleteCartItem = (req, res) => {
 };
 
 const getCartById = (req, res) => {
-  const buyer_id = req.params.userId;
+  const { user_id } = req.params;
+  console.log(user_id);
 
-  pool.query(queries.getCartById, [buyer_id], (error, results) => {
+  pool.query(queries.getCartById, [user_id], (error, results) => {
     if (error) throw error;
     return res.status(200).json(results.rows);
   });

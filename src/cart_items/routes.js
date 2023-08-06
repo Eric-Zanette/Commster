@@ -5,10 +5,10 @@ const router = Router();
 
 router.get("/", controller.getCartItems);
 
-router.get("/user/:userId", controller.getCartById);
+router.get("/user/:user_id", controller.getCartById);
 
 router.post("/:id", controller.addCartItem);
 
-router.delete("/user/:userId/sale/:saleId", controller.deleteCartItem);
+router.delete("/user/:userId/sale/:sale_id", controller.deleteCartItem);
 
 module.exports = router;

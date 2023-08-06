@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import { UsersProvider } from "./context/UserContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Item from "./pages/Item";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/sell" element={<Post />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/item/:id" element={<Item />} />
           </Routes>
         </Router>

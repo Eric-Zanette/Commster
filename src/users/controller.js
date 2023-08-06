@@ -110,8 +110,12 @@ const login = async (req, res) => {
 
 const getUserByToken = async (req, res) => {
   const token = req.body.token;
-  const decoded = jwt.decode(token);
-  res.status(200).json({ username: decoded.username });
+  try {
+    const decoded = jwt.decode(token);
+    res.status(200).json({ username: decoded.username, id: decoded.id });
+  } catch (error) {
+    res.status(404).json(error);
+  }
 };
 
 module.exports = {

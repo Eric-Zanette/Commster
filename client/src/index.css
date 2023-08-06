@@ -313,3 +313,36 @@ nav .navContainer ul {
   border-radius: 5px;
   padding: 5px 10px;
 }
+
+/* Cart */
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartContainer h1 {
+  margin-bottom: 50px;
+}
+
+.cartContainer .cartList .cartHeader {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+
+.cartContainer .cartList .itemListLine {
+  display: flex;
+}
+
+.cartContainer .cartList .cartHeader .cartItem {
+  border: none;
+  font-weight: 700;
+  background-color: rgb(225, 133, 29);
+}
+
+.cartContainer .cartList .cartItem {
+  border: 1px black solid;
+  width: 120px;
+  background-color: white;
+}

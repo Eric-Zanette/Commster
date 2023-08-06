@@ -9,6 +9,8 @@ export const UsersProvider = ({ children }) => {
     get_user();
   }, []);
 
+  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
   const register_user = async (formData) => {
     try {
       const res = await fetch("/api/users", {
@@ -69,7 +71,9 @@ export const UsersProvider = ({ children }) => {
 
     const data = await res.json();
 
-    data.username ? setUser(data.username) : setUser(null);
+    data.username
+      ? setUser({ username: capitalize(data.username), id: data.id })
+      : setUser(null);
   };
 
   const logout = () => {
