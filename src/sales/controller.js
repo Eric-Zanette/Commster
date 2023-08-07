@@ -25,7 +25,10 @@ const getSales = (req, res) => {
 
 /* Add a sale */
 const addSale = (req, res) => {
-  const { product, price, description, image_url, quantity } = req.body;
+  console.log(req.body);
+
+  const { product, price, description, image_url, quantity, user_id } =
+    req.body;
 
   const { errors, isValid } = validation.list(
     product,
@@ -42,7 +45,7 @@ const addSale = (req, res) => {
 
   pool.query(
     queries.createSale,
-    [product, price, description, url, quantity],
+    [product, price, description, url, quantity, user_id],
     (error, results) => {
       if (error) throw error;
       console.log("saled!");
@@ -75,10 +78,23 @@ const getRecentSales = async (req, res) => {
   res.status(200).json(recentSales.rows);
 };
 
+const getSalesByUserId = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  try {
+    const userSales = await pool.query(queries.getSaleByUserId, [id]);
+    res.status(200).json(userSales.rows);
+  } catch (error) {
+    res.status(404).json(error);
+  }
+};
+
 module.exports = {
   getSales,
   getSaleById,
   addSale,
   deleteSale,
   getRecentSales,
+  getSalesByUserId,
 };

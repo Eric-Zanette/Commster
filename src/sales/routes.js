@@ -26,4 +26,6 @@ router.post("/recent", upload.single("image"), controller.getRecentSales);
 
 router.delete("/:id", controller.deleteSale);
 
+router.get("/user/:id", controller.getSalesByUserId);
+
 module.exports = router;

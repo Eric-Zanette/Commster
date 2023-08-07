@@ -11,17 +11,16 @@ const Cart = () => {
       const res = await fetch(`/api/carts/user/${user.id}`);
       const data = await res.json();
       setCartItems(data);
-      cartTotal();
+      cartTotal(data);
     };
     user && getCart();
   }, [user]);
 
-  const cartTotal = () => {
+  const cartTotal = (items) => {
     var subTotal = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      subTotal +=
-        parseInt(cartItems[i].price) * parseInt(cartItems[i].quantity);
-      console.log(cartItems[i].price);
+    for (let i = 0; i < items.length; i++) {
+      subTotal += parseInt(items[i].price) * parseInt(items[i].quantity);
+      console.log(items[i].price);
     }
     setTotal(subTotal);
   };
@@ -29,7 +28,7 @@ const Cart = () => {
   if (!user) {
     return (
       <div className="cartContainer">
-        <h1>Loading...</h1>
+        <h1>Login to See Cart</h1>
       </div>
     );
   }
@@ -56,7 +55,8 @@ const Cart = () => {
             );
           })}
         </div>
-        Cart Total = ${total}
+        <h2>Cart Total = ${total}</h2>
+        <button>Checkout</button>
       </div>
     </div>
   );

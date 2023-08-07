@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UsersContext from "../context/UserContext";
 
 const SaleForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const SaleForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const { user } = useContext(UsersContext);
 
   useEffect(() => {
     console.log(errors);
@@ -43,6 +45,9 @@ const SaleForm = () => {
     fData.append("description", formData.description);
     fData.append("quantity", formData.quantity);
     fData.append("image_url", formData.image_url);
+    fData.append("user_id", user.id);
+
+    console.log(fData);
 
     const response = await fetch("api/sales", {
       method: "POST",
