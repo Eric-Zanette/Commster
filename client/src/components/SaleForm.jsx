@@ -13,6 +13,7 @@ const SaleForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [flash, setFlash] = useState(false);
   const { user } = useContext(UsersContext);
 
   useEffect(() => {
@@ -58,10 +59,17 @@ const SaleForm = () => {
 
     const data = await response.json();
     if (response.status === 200) {
-      return navigate("/market");
+      setFlash(true);
+      const timer = setTimeout(() => {
+        navigate("/market");
+      }, 1000);
     }
     setErrors({ ...data });
   };
+
+  if (flash == true) {
+    return <div className="flash">Listing Created!</div>;
+  }
 
   return (
     <form className="saleForm" onSubmit={(e) => onSubmit(e)}>

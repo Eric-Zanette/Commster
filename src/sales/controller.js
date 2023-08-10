@@ -49,7 +49,7 @@ const addSale = (req, res) => {
     (error, results) => {
       if (error) throw error;
       console.log("saled!");
-      return res.status(200);
+      return res.status(200).json({ sale: "Created!" });
     }
   );
 };

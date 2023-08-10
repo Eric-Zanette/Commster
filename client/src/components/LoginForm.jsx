@@ -28,7 +28,7 @@ const LoginForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await login_user({ ...formData });
-    res === true ? navigate("/sell") : setErrors({ ...res });
+    res === true ? navigate("/listings") : setErrors({ ...res });
   };
 
   return (

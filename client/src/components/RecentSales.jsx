@@ -6,11 +6,12 @@ const RecentSales = () => {
   const [sales, setSales] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const { user } = useContext(UsersContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     getRecentSales(5);
-    console.log(sales);
   }, []);
 
   const getRecentSales = async (num) => {
@@ -43,13 +44,22 @@ const RecentSales = () => {
       <div className="recentSalesContainer">
         {sales.map((sale) => {
           return (
-            <div className="saleItem">
-              <img
-                src={sale.img_url}
-                onClick={() => navigate(`/item/${sale.id}`)}
-              />
-              <p>{sale.product}</p>
-              <p>${sale.price}</p>
+            <div className="saleItemContainer">
+              <p className="yourSaleHeader">
+                {sale.user_id == user.id ? "Your Listing" : null}
+              </p>
+              <div
+                className={`saleItem ${
+                  sale.user_id == user.id ? "yourSale" : null
+                }`}
+              >
+                <img
+                  src={sale.img_url}
+                  onClick={() => navigate(`/item/${sale.id}`)}
+                />
+                <p>{sale.product}</p>
+                <p>${(parseFloat(sale.price) || 0).toLocaleString("en-US")}</p>
+              </div>
             </div>
           );
         })}

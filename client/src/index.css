@@ -209,6 +209,11 @@ nav .navContainer ul {
   margin-top: 0px;
 }
 
+.flash {
+  margin-top: 200px;
+  font-size: 40px;
+}
+
 /* Market */
 
 .marketContairner {
@@ -221,17 +226,16 @@ nav .navContainer ul {
 }
 
 .marketContainer h2 {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .recentSalesContainer {
-  width: 650px;
+  width: 1050px;
   height: 50%;
   display: grid;
-  overflow-x: auto;
-  overflow-y: auto;
+
   gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   justify-items: center;
 }
 
@@ -239,15 +243,34 @@ nav .navContainer ul {
   display: flex;
   width: 200px;
   height: 250px;
-  overflow: hidden;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 30px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+
+.recentSalesContainer .saleItem.yourSale {
+  border: 3px solid rgb(163, 140, 9);
 }
 
 .recentSalesContainer .saleItem p {
   margin-left: 10px;
+}
+
+.recentSalesContainer .saleItemContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.recentSalesContainer .saleItemContainer .yourSaleHeader {
+  color: rgb(104, 89, 4);
+  position: absolute;
+  top: -25px;
 }
 
 .recentSalesContainer .saleItem img {
@@ -287,8 +310,9 @@ nav .navContainer ul {
 }
 
 .itemContainer .itemDescription {
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  max-width: 700px;
 }
 
 .itemContainer .itemForm .quantity {
@@ -299,7 +323,7 @@ nav .navContainer ul {
 }
 
 .itemContainer .itemForm .itemFlex {
-  justify-content: space-around;
+  width: 500px;
 }
 
 .itemContainer .itemForm .quantity .quantityInput {
@@ -340,14 +364,28 @@ nav .navContainer ul {
 }
 
 .cartContainer .cartList .itemListLine {
+  position: relative;
   display: flex;
   width: 600px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartContainer .cartList .cartDelete {
+  position: absolute;
+  right: -25px;
+}
+
+.cartContainer .cartList .cartDelete:hover {
+  color: red;
 }
 
 .cartContainer .cartList .cartHeader .cartItem {
   border: none;
-  font-weight: 700;
-  background-color: rgb(232, 121, 10);
+  font-weight: 500;
+  background-color: rgb(7, 32, 55);
+  color: white;
+  padding: 1px;
 }
 
 .cartContainer .cartList .cartItem {
@@ -358,7 +396,7 @@ nav .navContainer ul {
 
 .cartContainer button {
   margin-top: 30px;
-  background-color: rgb(22, 103, 154);
+  background-color: rgb(7, 32, 55);
   color: white;
   font-size: 20px;
   padding: 10px 5px;
@@ -370,9 +408,10 @@ nav .navContainer ul {
 /* Listings Page */
 
 .listingsGrid {
-  margin-top: 20px;
+  margin-top: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
 }
 
 .listingsGrid .listing {
@@ -380,4 +419,18 @@ nav .navContainer ul {
   border: black 2px solid;
   border-radius: 5px;
   padding-bottom: 5px;
+}
+
+.listingsGrid .listing img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+}
+.listingContainer button {
+  margin-top: 60px;
+  font-size: 30px;
+  background-color: rgb(7, 32, 55);
+  padding: 10px 40px;
+  border-radius: 5px;
+  color: white;
 }

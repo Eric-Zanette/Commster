@@ -9,6 +9,6 @@ router.get("/user/:user_id", controller.getCartById);
 
 router.post("/:id", controller.addCartItem);
 
-router.delete("/user/:userId/sale/:sale_id", controller.deleteCartItem);
+router.delete("/user/:user_id/sale/:sale_id", controller.deleteCartItem);
 
 module.exports = router;

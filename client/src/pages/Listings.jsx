@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import UsersContext from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
@@ -15,6 +16,8 @@ const Listings = () => {
     user && getListings();
   }, [user]);
 
+  const navigate = useNavigate();
+
   if (!user) {
     return (
       <div className="container">
@@ -25,21 +28,31 @@ const Listings = () => {
 
   return (
     <div className="container">
-      <h1>Listings</h1>
-      <div className="listingsGrid">
-        {listings.map((listing) => {
-          return (
-            <div className="listing">
-              <img src={listing.img_url} alt="" />
-              <div className="listingInfo">
-                {" "}
-                <p>{listing.product}</p>
-                <p>${listing.price}</p>
-                <p>{listing.posted_on.split("T")[0]}</p>
+      <div className="listingContainer">
+        <h1>Your Listings</h1>
+        <div className="listingsGrid">
+          {listings.map((listing) => {
+            return (
+              <div
+                className="listing"
+                onClick={() => navigate(`/item/${listing.id}`)}
+              >
+                <img src={listing.img_url} alt="" />
+                <div className="listingInfo">
+                  {" "}
+                  <p>{listing.product}</p>
+                  <p>
+                    ${(parseFloat(listing.price) || 0).toLocaleString("en-US")}
+                  </p>
+                  <p>{listing.posted_on.split("T")[0]}</p>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+        <button onClick={() => navigate("/sell")}>
+          <p>Create a New Listing</p>
+        </button>
       </div>
     </div>
   );

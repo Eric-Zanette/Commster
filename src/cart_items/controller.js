@@ -25,7 +25,6 @@ const getCartItems = (req, res) => {
 
 /* Add a cart item */
 const addCartItem = async (req, res) => {
-  console.log(req.body);
   const sale_id = req.params.id;
   const { token, quantity } = req.body;
 
@@ -44,8 +43,8 @@ const addCartItem = async (req, res) => {
 
 /* deletes a cart item */
 const deleteCartItem = (req, res) => {
-  const buyer_id = req.params.userId;
-  const sale_id = req.params.saleId;
+  const buyer_id = req.params.user_id;
+  const sale_id = req.params.sale_id;
 
   pool.query(queries.getCartItemById, [buyer_id, sale_id], (error, results) => {
     if (!results.rows.length) {
@@ -65,7 +64,6 @@ const deleteCartItem = (req, res) => {
 
 const getCartById = (req, res) => {
   const { user_id } = req.params;
-  console.log(user_id);
 
   pool.query(queries.getCartById, [user_id], (error, results) => {
     if (error) throw error;

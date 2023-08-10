@@ -8,6 +8,8 @@ const Item = () => {
   const [quantity, setQuantity] = useState();
   const token = localStorage.getItem("token");
 
+  const { user } = useContext(UsersContext);
+
   useEffect(() => {
     const fetchSale = async () => {
       const response = await fetch(`/api/sales/${id}`);
@@ -53,7 +55,7 @@ const Item = () => {
       <form className="itemForm" onSubmit={(e) => onSubmit(e)}>
         <div className="itemFlex">
           <div className="quantity">
-            <h2>${sale.price} x </h2>
+            <h2>${(parseFloat(sale.price) || 0).toLocaleString("en-US")} x </h2>
             <input
               type="number"
               className="quantityInput"
