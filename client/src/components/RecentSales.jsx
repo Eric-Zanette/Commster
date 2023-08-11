@@ -48,14 +48,11 @@ const RecentSales = () => {
               <p className="yourSaleHeader">
                 {sale.user_id == user.id ? "Your Listing" : null}
               </p>
-              <div
-                className={`saleItem ${
-                  sale.user_id == user.id ? "yourSale" : null
-                }`}
-              >
+              <div className="saleItem ">
                 <img
                   src={sale.img_url}
                   onClick={() => navigate(`/item/${sale.id}`)}
+                  className={`${sale.user_id == user.id ? "yourSale" : null}`}
                 />
                 <p>{sale.product}</p>
                 <p>${(parseFloat(sale.price) || 0).toLocaleString("en-US")}</p>

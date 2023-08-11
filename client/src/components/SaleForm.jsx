@@ -22,6 +22,8 @@ const SaleForm = () => {
 
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+
   const onChange = (e) => {
     if (e.target.name === "image") {
       setFormData({
@@ -52,6 +54,7 @@ const SaleForm = () => {
 
     const response = await fetch("api/sales", {
       method: "POST",
+      headers: { Authorization: token },
       body: fData,
     });
 

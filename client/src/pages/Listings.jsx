@@ -1,27 +1,54 @@
 import { useState, useContext, useEffect } from "react";
 import UsersContext from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useContext(UsersContext);
 
+  const getListings = async () => {
+    setLoading(true);
+    const res = await fetch(`/api/sales/user/${user.id}`);
+    const data = await res.json();
+    setListings(data);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const getListings = async () => {
-      const res = await fetch(`/api/sales/user/${user.id}`);
-      const data = await res.json();
-      console.log(data);
-      setListings(data);
-    };
     user && getListings();
   }, [user]);
 
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+
+  const deleteListing = async (e, listing) => {
+    e.stopPropagation();
+
+    const res = await fetch(`/api/sales/${listing.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+    getListings();
+  };
+
+  if (loading) {
+    return (
+      <div className="container">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   if (!user) {
     return (
       <div className="container">
-        <h1>Loading</h1>
+        <h1>Login to See Your Listing</h1>
       </div>
     );
   }
@@ -46,6 +73,10 @@ const Listings = () => {
                   </p>
                   <p>{listing.posted_on.split("T")[0]}</p>
                 </div>
+                <FaTimes
+                  className="cartDelete"
+                  onClick={(e) => deleteListing(e, listing)}
+                />
               </div>
             );
           })}

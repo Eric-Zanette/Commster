@@ -1,6 +1,7 @@
 const pool = require("../../db");
 const queries = require("./queries");
 const validation = require("./validation");
+const jwt = require("jsonwebtoken");
 
 /* Get a sale by ID */
 const getSaleById = (req, res) => {
@@ -24,11 +25,19 @@ const getSales = (req, res) => {
 };
 
 /* Add a sale */
-const addSale = (req, res) => {
+const addSale = async (req, res) => {
   console.log(req.body);
 
   const { product, price, description, image_url, quantity, user_id } =
     req.body;
+
+  const token = await req.get("Authorization");
+  console.log(token);
+  decoded = await jwt.decode(token);
+
+  if (decoded.id != user_id) {
+    return res.status(400).json({ error: "not authenticated" });
+  }
 
   const { errors, isValid } = validation.list(
     product,
@@ -57,13 +66,15 @@ const addSale = (req, res) => {
 /* deletes a sale */
 const deleteSale = (req, res) => {
   id = req.params.id;
+  token = req.get("Authorization");
+  console.log(id);
 
   pool.query(queries.getSaleById, [id], (error, results) => {
     if (!results.rows.length) {
       if (error) throw error;
       return res.send("No sale by the id");
     }
-    pool.query(queries.deletesaleById, [id], (error, results) => {
+    pool.query(queries.deleteSaleById, [id], (error, results) => {
       if (error) throw error;
       return res.send("sale successfully deleted");
     });

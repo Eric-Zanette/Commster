@@ -253,7 +253,7 @@ nav .navContainer ul {
   border-radius: 5px;
 }
 
-.recentSalesContainer .saleItem.yourSale {
+.recentSalesContainer .saleItem .yourSale {
   border: 3px solid rgb(163, 140, 9);
 }
 
