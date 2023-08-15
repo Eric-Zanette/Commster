@@ -230,12 +230,12 @@ nav .navContainer ul {
 }
 
 .recentSalesContainer {
-  width: 1050px;
+  max-width: 1050px;
   height: 50%;
   display: grid;
 
   gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-items: center;
 }
 
@@ -254,7 +254,7 @@ nav .navContainer ul {
 }
 
 .recentSalesContainer .saleItem .yourSale {
-  border: 3px solid rgb(163, 140, 9);
+  border: 3px solid rgb(7, 32, 55);
 }
 
 .recentSalesContainer .saleItem p {
@@ -268,7 +268,8 @@ nav .navContainer ul {
 }
 
 .recentSalesContainer .saleItemContainer .yourSaleHeader {
-  color: rgb(104, 89, 4);
+  color: rgb(7, 32, 55);
+  font-weight: 600;
   position: absolute;
   top: -25px;
 }
@@ -410,8 +411,14 @@ nav .navContainer ul {
 .listingsGrid {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   gap: 5px;
+  justify-content: center;
+  width: fit-content;
+  background-color: rgb(239, 246, 252);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 .listingsGrid .listing {
@@ -419,6 +426,7 @@ nav .navContainer ul {
   border: black 2px solid;
   border-radius: 5px;
   padding-bottom: 5px;
+  width: 175px;
 }
 
 .listingsGrid .listing img {
@@ -433,4 +441,68 @@ nav .navContainer ul {
   padding: 10px 40px;
   border-radius: 5px;
   color: white;
+}
+
+/* Checkout */
+
+.checkout {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(0, 64, 64);
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+.paymentOptions {
+  margin-top: 5px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paymentOptions img {
+  max-width: 50px;
+}
+
+.checkout .checkoutFormHeader {
+  margin-bottom: 30px;
+}
+
+.checkout .paymentForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+
+.checkout .paymentForm .flexH {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout .paymentForm .flexH .inline {
+  display: flex;
+  justify-content: center;
+}
+
+.checkout .paymentForm input {
+  width: 70%;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.checkout button {
+  font-size: 30px;
+  background-color: rgb(1, 21, 36);
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.checkout .paymentForm .flexH input {
+  width: 40%;
 }

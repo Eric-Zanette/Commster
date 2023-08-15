@@ -3,6 +3,7 @@ import Market from "./pages/Market";
 import Post from "./pages/Post";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import Checkout from "./pages/Checkout";
 import Navbar from "./components/Navbar";
 import { UsersProvider } from "./context/UserContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -25,6 +26,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/item/:id" element={<Item />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </Router>
       </UsersProvider>

@@ -8,10 +8,11 @@ const deleteCartItemById =
   "DELETE FROM carts WHERE buyer_id = $1 AND sale_id = $2";
 
 const getCartById =
-  "SELECT sales.product, sales.price, carts.quantity, carts.sale_id \
+  "SELECT sales.product, sales.price, SUM(carts.quantity) AS quantity, carts.sale_id \
                     FROM sales \
                     JOIN carts ON sales.id = carts.sale_id\
-                    WHERE carts.buyer_id = $1";
+                    WHERE carts.buyer_id = $1\
+                    GROUP BY sales.product, sales.price, carts.sale_id";
 
 module.exports = {
   createCartItem,

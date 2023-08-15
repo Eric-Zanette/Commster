@@ -6,9 +6,11 @@ const Item = () => {
   const { id } = useParams();
   const [sale, setSale] = useState(null);
   const [quantity, setQuantity] = useState();
+  const [flash, setFlash] = useState(false);
   const token = localStorage.getItem("token");
 
   const { user } = useContext(UsersContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSale = async () => {
@@ -21,17 +23,23 @@ const Item = () => {
     fetchSale();
   }, []);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    fetch(`/api/carts/${id}`, {
+    const salePing = await fetch(`/api/carts/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "Application/Json",
       },
       body: JSON.stringify({ token: token, quantity: quantity }),
     });
-    console.log(JSON.stringify({ token: token, quantity: quantity }));
+
+    if (salePing.status === 200) {
+      setFlash(true);
+      const timer = setTimeout(() => {
+        navigate("/market");
+      }, 1000);
+    }
   };
 
   const onChange = (e) => {
@@ -40,7 +48,19 @@ const Item = () => {
   };
 
   if (!sale) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="container">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
+  if (flash) {
+    return (
+      <div className="container">
+        <h1>Purchase Successful</h1>
+      </div>
+    );
   }
 
   return (
@@ -55,15 +75,27 @@ const Item = () => {
       <form className="itemForm" onSubmit={(e) => onSubmit(e)}>
         <div className="itemFlex">
           <div className="quantity">
-            <h2>${(parseFloat(sale.price) || 0).toLocaleString("en-US")} x </h2>
-            <input
-              type="number"
-              className="quantityInput"
-              value={quantity}
-              onChange={(e) => onChange(e)}
-            />
+            {user.id != sale.user_id ? (
+              <>
+                <h2>
+                  ${(parseFloat(sale.price) || 0).toLocaleString("en-US")} x{" "}
+                </h2>
+                <input
+                  type="number"
+                  className="quantityInput"
+                  value={quantity}
+                  onChange={(e) => onChange(e)}
+                />
+              </>
+            ) : (
+              <h2>${(parseFloat(sale.price) || 0).toLocaleString("en-US")}</h2>
+            )}
           </div>
-          <button>BUY!</button>
+          {user.id != sale.user_id ? (
+            <button>BUY!</button>
+          ) : (
+            <h2>Your Listing</h2>
+          )}
         </div>
       </form>
     </div>

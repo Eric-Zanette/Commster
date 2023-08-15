@@ -1,11 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 import UsersContext from "../context/UserContext";
 import { FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState();
   const [total, setTotal] = useState();
   const { user } = useContext(UsersContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     user && getCart();
@@ -88,7 +91,7 @@ const Cart = () => {
           })}
         </div>
         <h2>Cart Total = ${total.toLocaleString("en-US")}</h2>
-        <button>Checkout</button>
+        <button onClick={() => navigate("/checkout")}>Checkout</button>
       </div>
     </div>
   );
