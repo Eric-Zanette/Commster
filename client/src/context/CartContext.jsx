@@ -6,10 +6,17 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState();
   const [total, setTotal] = useState();
+  const [cartSum, setCartSum] = useState();
   const { user } = useContext(UsersContext);
 
   useEffect(() => {
-    user && getCart();
+    if (cartItems) {
+      quantitySum();
+    }
+  }, [cartItems]);
+
+  useEffect(() => {
+    user ? getCart() : setCartItems([]);
   }, [user]);
 
   const getCart = async () => {
@@ -40,9 +47,26 @@ export const CartProvider = ({ children }) => {
     );
     getCart();
   };
+
+  const quantitySum = () => {
+    let sum = 0;
+    Object.keys(cartItems).forEach(
+      (key) => (sum += parseInt(cartItems[key].quantity))
+    );
+    setCartSum(sum);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, total, getCart, cartTotal, deleteCartItem }}
+      value={{
+        cartItems,
+        total,
+        getCart,
+        cartTotal,
+        deleteCartItem,
+        quantitySum,
+        cartSum,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UsersContext from "../context/UserContext";
+import CartContext from "../context/CartContext";
 
 const Item = () => {
   const { id } = useParams();
@@ -9,6 +10,7 @@ const Item = () => {
   const [flash, setFlash] = useState(false);
   const token = localStorage.getItem("token");
 
+  const { getCart } = useContext(CartContext);
   const { user } = useContext(UsersContext);
   const navigate = useNavigate();
 
@@ -37,6 +39,7 @@ const Item = () => {
     if (salePing.status === 200) {
       setFlash(true);
       const timer = setTimeout(() => {
+        getCart();
         navigate("/market");
       }, 1000);
     }

@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import UsersContext from "../context/UserContext";
+import CartContext from "../context/CartContext";
 import { useContext } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logout } = useContext(UsersContext);
+  const { cartSum } = useContext(CartContext);
 
   return (
     <nav>
@@ -22,8 +25,9 @@ const Navbar = () => {
             <Link to="/listings">Sell</Link>
           </li>
 
-          <li>
+          <li className="navCart">
             <Link to="/cart">Cart</Link>
+            {cartSum != 0 && <div className="cartSum">{cartSum}</div>}
           </li>
 
           <li>

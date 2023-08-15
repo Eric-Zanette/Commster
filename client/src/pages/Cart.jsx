@@ -22,9 +22,9 @@ const Cart = () => {
     );
   }
 
-  if (!cartItems) {
+  if (Object.keys(cartItems).length == 0) {
     return (
-      <div className="cartContainer">
+      <div className="container">
         <h1>No Items in Cart</h1>
       </div>
     );
