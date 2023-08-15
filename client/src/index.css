@@ -506,3 +506,7 @@ nav .navContainer ul {
 .checkout .paymentForm .flexH input {
   width: 40%;
 }
+
+.payTotal {
+  margin-top: 60px;
+}

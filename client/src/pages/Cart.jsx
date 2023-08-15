@@ -2,47 +2,17 @@ import { useEffect, useState, useContext } from "react";
 import UsersContext from "../context/UserContext";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import CartContext from "../context/CartContext";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState();
-  const [total, setTotal] = useState();
   const { user } = useContext(UsersContext);
+  const { cartItems, total, getCart, deleteCartItem } = useContext(CartContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     user && getCart();
   }, [user]);
-
-  const getCart = async () => {
-    const res = await fetch(`/api/carts/user/${user.id}`);
-    const data = await res.json();
-    setCartItems(data);
-    cartTotal(data);
-  };
-
-  const cartTotal = (items) => {
-    var subTotal = 0;
-    for (let i = 0; i < items.length; i++) {
-      subTotal += parseInt(items[i].price) * parseInt(items[i].quantity);
-      console.log(items[i].price);
-    }
-    setTotal(subTotal);
-  };
-
-  const deleteCartItem = async (cartItem) => {
-    console.log(cartItem);
-    const res = await fetch(
-      `/api/carts/user/${user.id}/sale/${cartItem.sale_id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    getCart();
-  };
 
   if (!user) {
     return (
