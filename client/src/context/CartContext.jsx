@@ -9,6 +9,8 @@ export const CartProvider = ({ children }) => {
   const [cartSum, setCartSum] = useState();
   const { user } = useContext(UsersContext);
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     if (cartItems) {
       quantitySum();
@@ -20,7 +22,9 @@ export const CartProvider = ({ children }) => {
   }, [user]);
 
   const getCart = async () => {
-    const res = await fetch(`/api/carts/user/${user.id}`);
+    const res = await fetch(`/api/carts/user/${user.id}`, {
+      headers: { Authorization: token },
+    });
     const data = await res.json();
     setCartItems(data);
     cartTotal(data);
@@ -42,6 +46,7 @@ export const CartProvider = ({ children }) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
       }
     );

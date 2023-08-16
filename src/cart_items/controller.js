@@ -3,8 +3,15 @@ const queries = require("./queries");
 const jwt = require("jsonwebtoken");
 
 /* Get cart items by user ID */
-const getCartItemsById = (req, res) => {
+const getCartItemsById = async (req, res) => {
   const { buyer_id } = req.body;
+
+  const token = await req.get("Authorization");
+  decoded = await jwt.decode(token);
+
+  if (decoded.id != buyer_id) {
+    return res.status(400).json({ error: "not authenticated" });
+  }
 
   pool.query(queries.getCartItemById, [buyer_id], (error, results) => {
     if (error) throw error;
@@ -42,9 +49,16 @@ const addCartItem = async (req, res) => {
 };
 
 /* deletes a cart item */
-const deleteCartItem = (req, res) => {
+const deleteCartItem = async (req, res) => {
   const buyer_id = req.params.user_id;
   const sale_id = req.params.sale_id;
+
+  const token = await req.get("Authorization");
+  decoded = await jwt.decode(token);
+
+  if (decoded.id != buyer_id) {
+    return res.status(400).json({ error: "not authenticated" });
+  }
 
   pool.query(queries.getCartItemById, [buyer_id, sale_id], (error, results) => {
     if (!results.rows.length) {

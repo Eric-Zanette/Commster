@@ -57,7 +57,10 @@ const Listings = () => {
     <div className="container">
       <div className="listingContainer">
         <h1>Your Listings</h1>
-        <div className="listingsGrid">
+        <div
+          className="listingsGrid"
+          style={Object.keys(listings).length == 0 && { display: "none" }}
+        >
           {listings.map((listing) => {
             return (
               <div
