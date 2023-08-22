@@ -28,7 +28,7 @@ const list = (product, price, description, img_url, quantity) => {
     errors.description = "Must enter a description";
   }
 
-  if (Validator.isLength(description.toString(), { min: 2, max: 255 })) {
+  if (!Validator.isLength(description.toString(), { min: 2, max: 255 })) {
     errors.description = "Must be Between 2 and 255 Characters!";
   }
 
