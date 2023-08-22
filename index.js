@@ -30,4 +30,4 @@ app.get("*", (req, res) => {
   res.sendFile(__dirname + "/client/build/index.html");
 });
 
-app.listen(port, () => console.log(`app listening on port ${port}`));
+app.listen(port, "0.0.0.0", () => console.log(`app listening on port ${port}`));
