@@ -18,6 +18,8 @@
 .env.test.local
 .env.production.local
 
+/public
+
 db.js
 
 npm-debug.log*
