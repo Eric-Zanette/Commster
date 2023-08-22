@@ -2,6 +2,7 @@ const pool = require("../../db");
 const queries = require("./queries");
 const validation = require("./validation");
 const jwt = require("jsonwebtoken");
+const config = require("../../config");
 
 /* Get a sale by ID */
 const getSaleById = (req, res) => {
@@ -49,7 +50,7 @@ const addSale = async (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const url = "http://localhost:5000/" + req.file.filename;
+  const url = `http://localhost:${config.port}/` + req.file.filename;
 
   pool.query(
     queries.createSale,
