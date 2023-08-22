@@ -59,7 +59,7 @@ const Listings = () => {
         <h1>Your Listings</h1>
         <div
           className="listingsGrid"
-          style={Object.keys(listings).length == 0 && { display: "none" }}
+          style={Object.keys(listings).length == 0 ? { display: "none" } : {}}
         >
           {listings.map((listing) => {
             return (

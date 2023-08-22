@@ -9,7 +9,7 @@ require("dotenv").config();
 /* Set-up */
 
 const app = express();
-const port = 5000;
+const port = 5001;
 
 /* middleware */
 app.use(express.json());

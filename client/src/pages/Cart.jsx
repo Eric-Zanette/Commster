@@ -16,7 +16,7 @@ const Cart = () => {
 
   if (!user) {
     return (
-      <div className="cartContainer">
+      <div className="container">
         <h1>Login to See Cart</h1>
       </div>
     );

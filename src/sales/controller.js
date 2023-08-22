@@ -32,7 +32,6 @@ const addSale = async (req, res) => {
     req.body;
 
   const token = await req.get("Authorization");
-  console.log(token);
   decoded = await jwt.decode(token);
 
   if (decoded.id != user_id) {
