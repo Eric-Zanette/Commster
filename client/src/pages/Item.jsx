@@ -40,7 +40,7 @@ const Item = () => {
       setFlash(true);
       const timer = setTimeout(() => {
         getCart();
-        navigate("/market");
+        navigate("/");
       }, 1000);
     }
   };

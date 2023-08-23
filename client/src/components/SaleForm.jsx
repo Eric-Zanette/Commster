@@ -64,7 +64,7 @@ const SaleForm = () => {
     if (response.status === 200) {
       setFlash(true);
       const timer = setTimeout(() => {
-        navigate("/market");
+        navigate("/");
       }, 1000);
     }
     setErrors({ ...data });
