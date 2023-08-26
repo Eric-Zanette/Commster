@@ -110,8 +110,8 @@ nav .navContainer .hamburger {
 
 .bar {
   position: block;
-  background-color: #333;
-  height: 3px;
+  background-color: white;
+  height: 4px;
   margin: 2px 0;
   width: 25px;
 }
