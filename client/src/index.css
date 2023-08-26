@@ -47,6 +47,7 @@ nav {
 }
 
 nav .navContainer {
+  position: relative;
   display: flex;
   width: 1000px;
   justify-content: space-between;
@@ -91,6 +92,29 @@ nav .navContainer ul .navCart .cartSum {
   font-weight: 600;
 }
 
+nav .navContainer .hamLinks {
+  position: absolute;
+  text-align: center;
+  font-size: 10px;
+  right: 2%;
+  display: block;
+  background-color: aliceblue;
+  border: 1px black solid;
+}
+
+nav .navContainer .hamburger {
+  position: absolute;
+  right: 5%;
+  display: none;
+}
+
+.bar {
+  position: block;
+  background-color: #333;
+  height: 3px;
+  margin: 2px 0;
+  width: 25px;
+}
 /* Login */
 
 .container {
@@ -431,6 +455,13 @@ nav .navContainer ul .navCart .cartSum {
 
 /* Listings Page */
 
+.listingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .listingsGrid {
   margin-top: 40px;
   display: grid;
@@ -458,12 +489,13 @@ nav .navContainer ul .navCart .cartSum {
   object-fit: cover;
 }
 .listingContainer button {
-  margin-top: 60px;
-  font-size: 30px;
+  margin-top: 30px;
+  font-size: 20px;
   background-color: rgb(7, 32, 55);
   padding: 10px 40px;
   border-radius: 5px;
   color: white;
+  width: 200px;
 }
 
 /* Checkout */
@@ -532,4 +564,154 @@ nav .navContainer ul .navCart .cartSum {
 
 .payTotal {
   margin-top: 60px;
+}
+
+@media (max-width: 640px) {
+  /* Navbar  */
+
+  nav .navContainer ul {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+    display: none;
+  }
+  nav .navContainer .hamburger {
+    display: block;
+  }
+
+  nav .navContainer .hamLinks {
+    font-size: 14px;
+    color: black;
+    width: 60px;
+  }
+
+  /* Marketplace */
+  .recentSalesContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Cart */
+
+  .cartContainer .cartList .cartHeader {
+    width: 430px;
+  }
+
+  .cartContainer .cartList .itemListLine {
+    width: 430px;
+  }
+
+  .cartContainer .cartList .cartDelete {
+    right: -20px;
+  }
+}
+
+@media (max-width: 460px) {
+  .recentSalesContainer {
+    max-width: 1050px;
+    height: 50%;
+    display: grid;
+
+    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+
+  .listingsGrid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    justify-content: center;
+    width: fit-content;
+    background-color: rgb(239, 246, 252);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  /* Cart */
+
+  .cartContainer .cartList {
+    font-size: 10px;
+  }
+
+  .cartContainer .cartList .cartHeader {
+    width: 295px;
+  }
+
+  .cartContainer .cartList .itemListLine {
+    width: 295px;
+  }
+
+  .cartContainer .cartList .cartDelete {
+    right: -12px;
+  }
+
+  /* Checkout */
+
+  .checkout {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 64, 64);
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .paymentOptions {
+    margin-top: 5px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .paymentOptions img {
+    max-width: 50px;
+  }
+
+  .checkout .checkoutFormHeader {
+    margin-bottom: 30px;
+  }
+
+  .checkout .paymentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+  }
+
+  .checkout .paymentForm .flexH {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .checkout .paymentForm .flexH .inline {
+    display: flex;
+    justify-content: center;
+  }
+
+  .checkout .paymentForm input {
+    width: 70%;
+    margin-bottom: 20px;
+    border: none;
+  }
+
+  .checkout button {
+    font-size: 30px;
+    background-color: rgb(1, 21, 36);
+    padding: 2px 5px;
+    border-radius: 5px;
+  }
+
+  .checkout .paymentForm .flexH input {
+    width: 40%;
+  }
+
+  .payTotal {
+    margin-top: 60px;
+  }
 }

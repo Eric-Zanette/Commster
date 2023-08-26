@@ -24,12 +24,13 @@ app.use("/api/carts", cartRoutes);
 app.use(express.static(__dirname + "/public/saleImages"));
 console.log(__dirname + "/public/saleImages");
 
-app.use(express.static(__dirname + "/client/build"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(__dirname + "/client/build"));
 
-app.get("*", (req, res) => {
-  res.sendFile(__dirname + "/client/build/index.html");
-});
-
+  app.get("*", (req, res) => {
+    res.sendFile(__dirname + "/client/build/index.html");
+  });
+}
 app.listen(port, "127.0.0.1", () =>
   console.log(`app listening on port ${port}`)
 );
