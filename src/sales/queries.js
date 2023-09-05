@@ -5,7 +5,8 @@ const getSaleById = "SELECT * FROM sales WHERE ID = $1";
 
 const deleteSaleById = "DELETE FROM sales WHERE id = $1";
 
-const getRecentSales = "SELECT * FROM sales ORDER BY posted_on DESC LIMIT $1";
+const getRecentSales =
+  "SELECT * FROM sales WHERE price BETWEEN $1 and $2 AND posted_on > $3 AND quantity BETWEEN $4 and $5 ORDER BY $6 DESC LIMIT $7";
 
 const getSaleByUserId = "SELECT * FROM sales WHERE user_id = $1";
 

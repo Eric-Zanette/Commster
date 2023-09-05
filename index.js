@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(__dirname + "/client/build/index.html");
   });
 }
+
 app.listen(port, "127.0.0.1", () =>
   console.log(`app listening on port ${port}`)
 );

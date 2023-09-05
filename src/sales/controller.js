@@ -82,9 +82,27 @@ const deleteSale = (req, res) => {
 };
 
 const getRecentSales = async (req, res) => {
-  const { num } = req.body;
+  const {
+    num,
+    min_price,
+    max_price,
+    min_quantity,
+    max_quantity,
+    posted_on,
+    sorter,
+  } = req.body;
 
-  const recentSales = await pool.query(queries.getRecentSales, [num]);
+  const recentSales = await pool.query(queries.getRecentSales, [
+    min_price,
+    max_price,
+    posted_on,
+    min_quantity,
+    max_quantity,
+    sorter,
+    num,
+  ]);
+
+  console.log(req.body);
 
   res.status(200).json(recentSales.rows);
 };

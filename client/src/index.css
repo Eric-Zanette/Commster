@@ -276,7 +276,43 @@ nav .navContainer .hamburger {
   margin-bottom: 40px;
 }
 
-.recentSalesContainer {
+.salesPage {
+  display: flex;
+  position: relative;
+  gap: 50px;
+}
+
+.salesPage .salesSlicer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  height: 100%;
+  background-color: rgb(208, 219, 215);
+  border-radius: 10px;
+  padding: 25px;
+  white-space: nowrap;
+}
+
+.salesPage .salesSlicer .priceRange {
+  display: flex;
+  gap: 10px;
+}
+
+.salesPage .salesSlicer .priceRange input {
+  width: 50px;
+}
+
+.salesPage .salesSlicer .minQuantity {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.salesPage .salesSlicer .minQuantity input {
+  width: 50px;
+}
+
+.salesPage .recentSalesContainer {
   max-width: 1050px;
   height: 50%;
   display: grid;
@@ -286,7 +322,7 @@ nav .navContainer .hamburger {
   justify-items: center;
 }
 
-.recentSalesContainer .saleItem {
+.salesPage .recentSalesContainer .saleItem {
   display: flex;
   width: 200px;
   height: 250px;
@@ -300,28 +336,28 @@ nav .navContainer .hamburger {
   border-radius: 5px;
 }
 
-.recentSalesContainer .saleItem .yourSale {
+.salesPage .recentSalesContainer .saleItem .yourSale {
   border: 3px solid rgb(7, 32, 55);
 }
 
-.recentSalesContainer .saleItem p {
+.salesPage .recentSalesContainer .saleItem p {
   margin-left: 10px;
 }
 
-.recentSalesContainer .saleItemContainer {
+.salesPage .recentSalesContainer .saleItemContainer {
   display: flex;
   position: relative;
   justify-content: center;
 }
 
-.recentSalesContainer .saleItemContainer .yourSaleHeader {
+.salesPage .recentSalesContainer .saleItemContainer .yourSaleHeader {
   color: rgb(7, 32, 55);
   font-weight: 600;
   position: absolute;
   top: -25px;
 }
 
-.recentSalesContainer .saleItem img {
+.salesPage .recentSalesContainer .saleItem img {
   width: 200px;
   height: 200px;
   object-fit: cover;
